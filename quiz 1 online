@@ -9,15 +9,22 @@ ls -lh
 #!/bin/bash
 # save as triplet-stop.sh
 # splits a sequence into triplets
+#!/bin/bash
+# save as triplet-stop.sh
+# splits a sequence into triplets
 x=0
 while [ -n "${1:$x:3}" ]; do
   seq=$seq${1:$x:3}" "
   x=$(expr $x + 3)
-  if [ ${1:$x:3} == taa ] || [ $x -gt 8 ]; then
+  if [ ${1:$x:3} == taa ] && [ $x -gt 8 ]; then
     break
   fi
 done
+if [ $x -lt 9 ]; then
+echo "please write more than 9 characters"
+else
 echo "$seq"
+fi
 
 #now we make it executable
 chmod u+x chapter-10-shell-programming--triplet-stop.sh
