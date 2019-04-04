@@ -1,0 +1,44 @@
+#Question 1:
+#a.
+wget 'https://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/chapter-10-shell-programming--triplet-stop.sh'
+ls
+#b.
+chmod 777 chapter-10-shell-programming--triplet-stop.sh
+ls -lh
+#function for part b
+#!/bin/bash
+# save as triplet-stop.sh
+# splits a sequence into triplets
+x=0
+while [ -n "${1:$x:3}" ]; do
+  seq=$seq${1:$x:3}" "
+  x=$(expr $x + 3)
+  if [ ${1:$x:3} == taa ] || [ $x -gt 8 ]; then
+    break
+  fi
+done
+echo "$seq"
+
+#now we make it executable
+chmod u+x chapter-10-shell-programming--triplet-stop.sh
+./chapter-10-shell-programming--triplet-stop.sh qwetaaertdsataavcdtaabvc
+./chapter-10-shell-programming--triplet-stop.sh qwecvbtaamnbtaa
+
+#Question 2:
+#a.
+#copy file:
+scp -i 44495005.pem tutes.txt ubuntu@ec2-13-211-114-120.ap-southeast-2.compute.amazonaws.com:
+ls
+#b.
+cat tutes.txt | grep -oE '\w+' | sort | uniq -c | sort -nr
+
+#Question 3:
+#a.
+vi test.txt
+egrep '^\w+\s+\w+\s+\w+$' test.txt
+#b.
+grep -E "^-[0-9]+" test.txt | grep -vE [.]
+#c.
+egrep -o '[[:space:]][-0-9]+\.[0-9]+[[:space:]]' test.txt
+#d.
+grep -Ew 'hydrogenase' test.txt | grep -vEw 'dehydrogenase' 
