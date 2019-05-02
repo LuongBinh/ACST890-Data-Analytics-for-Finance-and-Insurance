@@ -1,0 +1,31 @@
+#Question 1
+#a.
+wget http://www.staff.hs-mittweida.de/~wuenschi/data/media/compbiolbook/chapter-11-regex--structure.pdb
+
+#Find and replace: 
+sed -n 's/Beisel/Weisel/gp' chapter-11-regex--structure.pdb
+
+#b. delete 3 line: 
+sed '1,3d' chapter-11-regex--structure.pdb
+
+#c. show 6 lines 5-10: sed -n '5,10p' chapter-11-regex--structure.pdb
+
+#d. delete MET: 
+sed '/MET/d' chapter-11-regex--structure.pdb
+
+#e. show HELIX:  
+sed -n '/HELIX.*ILE/p' chapter-11-regex--structure.pdb
+
+#f. add 3 stars start with H: 
+sed '/^H/s/$/***/' chapter-11-regex--structure.pdb
+
+#g. replace SEQRES: circumstance 1: 
+	#replace the whole line: 
+sed '/SEQRES/s/^.*$/SEQ/' chapter-11-regex--structure.pdb
+#circumstance 2: 
+#replace a instance of strings: 
+sed 's/SEQRES/SEQ/g' chapter-11-regex--structure.pdb
+
+#h. delete all blank lines:
+scp -i 44495005.pem jabberwocky.txt ubuntu@ec2-13-211-114-120.ap-southeast-2.compute.amazonaws.com:  
+sed '/^.$/d'jabberwocky.txt
