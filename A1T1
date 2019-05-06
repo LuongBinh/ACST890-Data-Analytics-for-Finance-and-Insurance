@@ -1,0 +1,92 @@
+#Question 1:
+#Upload twain.txt:
+scp -i 44495005.pem twain.txt ubuntu@ec2-13-211-114-120.ap-southeast-2.compute.amazonaws.com:
+ls
+nano q1.py
+#write code in nano
+twain = open('twain.txt', 'r')
+text = twain.read()
+text = text.replace('Huck ','HucK ')
+if 'HucK ' in text:
+    print('HucK is in twain.txt')
+elif 'Huck ' in text:
+    print('replacement not successful')
+else:
+    print('replacement not successful')
+
+#Question 2:
+#Download stdio library:
+wget 'https://introcs.cs.princeton.edu/python/code/stdio.py'
+ls
+nano userargument.py
+#write code in nano
+import sys
+import stdio
+
+stdio.write('Hi ,')
+stdio.write(sys.argv[1])
+stdio.writeln('. How are you ?')
+
+python3 userargument.py python
+python3 userargument.py @!&^%
+python3 userargument.py 1234
+python3 userargument.py Bob
+userargument.py Bob
+python3 userargument.py Alice Bob
+
+#Question 3:
+nano q3.py
+#Write codes in nano
+number = 4
+while not number % 4 != 0:
+	number = int(input('write your number: '))
+	if number % 400 == 0:
+		print('your year is a leap year in Gregorian calendar')
+	elif number % 100 == 0 and number % 400 != 0:
+		print('your year is not a leap year in Gregorian calendar')
+	elif number % 4 == 0 and number % 100 != 0:
+		print('your year is a leap year in Gregorian calendar')
+	else:
+		print('your year is not a leap year in Gregorian calendar')
+
+python3 q3.py
+
+#Question 4:
+nano q4.py
+#write code in nano
+import random
+a = int(input('write your a '))
+b = int(input('write your b '))
+k = random.randint(a,b)
+print('a random number should be', k)
+
+python3 q4.py
+
+#Question 5:
+nano q5.py
+#write code in nano
+a = [20,3]
+b = [20,6]
+d = int(input('write your day '))
+m = int(input('write your month '))
+if a[1]<m<b[1]:
+	print('True')
+elif a[1] == m and d > a[0]:
+	print('True')
+elif b[1] == m and d < b[0]:
+	print('True')
+else:
+	print('False')
+
+#Question 6:
+nano q6.py
+#write code in nano
+import math
+t = float(input('input your time '))
+P = float(input('input your Principal '))
+r = float(input('input the interest rate '))
+k = r*t
+F = P* math.exp(k)
+print('the desire value should be', F)
+
+python3 q6.py
