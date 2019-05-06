@@ -55,20 +55,20 @@ python3 q3.py
 nano q4.py
 #write code in nano
 import random
-a = int(input('write your a '))
-b = int(input('write your b '))
-k = random.randint(a,b)
+import sys
+k = random.randint(int(sys.argv[1]),int(sys.argv[2]))
 print('a random number should be', k)
 
-python3 q4.py
+python3 q4.py 10 100
 
 #Question 5:
 nano q5.py
 #write code in nano
+import sys
 a = [20,3]
 b = [20,6]
-d = int(input('write your day '))
-m = int(input('write your month '))
+d = int(sys.argv[1])
+m = int(sys.argv[2])
 if a[1]<m<b[1]:
 	print('True')
 elif a[1] == m and d > a[0]:
@@ -77,6 +77,13 @@ elif b[1] == m and d < b[0]:
 	print('True')
 else:
 	print('False')
+
+#run examples:
+python3 q5.py 10 4
+python3 q5.py 10 3
+python3 q5.py 30 6
+python3 q5.py 30 3
+python3 q5.py 12 6
 
 #Question 6:
 nano q6.py
