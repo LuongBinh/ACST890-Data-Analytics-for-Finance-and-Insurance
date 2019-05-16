@@ -1,0 +1,64 @@
+#Question 1:
+#Only paste the fixed code:
+#run from Jupyter Notebook Terminal:
+pip install ipython-sql
+#or if running from the commander of window:
+python -m pip install ipython-sql
+#run from Jupyter Notebook Terminal:
+pip install version_information 
+#or if running from the commander of window:
+python -m pip install version_information
+
+#Question 2:
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+Country = ("B","C","D","E","F","G","H")
+Q = (80,150,135,165,95,130,110)
+L = (60,100,100,120,70,90,80)
+K = (50,100,80,100,60,80,70)
+data = pd.DataFrame({'Country': ["B","C","D","E","F","G","H"],
+                     'Q': [80,150,135,165,95,130,110],
+                     'L': [60,100,100,120,70,90,80],
+                     'K': [50,100,80,100,60,80,70]})
+data.describe()
+data.var()
+
+#Histogram of Q and L:
+plt.hist(data['Q'])
+plt.title('Histogram of Q')
+plt.xlabel('Q value')
+plt.ylabel('Frequency')
+plt.hist(data['L'])
+plt.title('Histogram of L')
+plt.xlabel('L value')
+plt.ylabel('Frequency')
+
+#Log value of three variables:
+print(np.log(data['Q']))
+print(np.log(data['K']))
+print(np.log(data['L']))
+
+#fit multiple regression model:
+predictors = data[['L','K']]
+response = data[['Q']]
+model = LinearRegression().fit(np.log(predictors), np.log(response))
+model.intercept_
+model.coef_
+
+#residuals plot:
+response_predict = model.predict(np.log(predictors))
+residuals = np.log(response) - response_predict
+plt.scatter(residuals, np.log(response))
+plt.title('plot of residuals')
+plt.xlabel('response variable')
+plt.ylabel('residuals')
+
+#calculate adjusted R squared:
+R = model.score(np.log(predictors),np.log(response))
+R_sq_adj = 1-((1-R)*(7-1)/(7-2-1))
+print(R_sq_adj)
+import statsmodels.formula.api as smf
+model2 = smf.ols('np.log(Q)~np.log(K) + np.log(L)', data = data).fit()
+model2.summary()
